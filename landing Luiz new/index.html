@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing Page</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Botão de tema -->
+  <div class="theme-toggle">
+    <input type="checkbox" id="toggleTheme" onclick="toggleTheme()" />
+    <label for="toggleTheme" class="toggle-label">
+      <span class="icon">🌙</span>
+      <span class="slider"></span>
+      <span class="icon">☀️</span>
+    </label>
+  </div>
+
+  <header>
+    <h1>Bem-vindo à Landing Page</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="curriculo.html">Currículo</a></li>
+        <li><a href="github.html">GitHub</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="sobre-box" data-animate>
+      <h2>Sobre Mim</h2>
+      <img src="imagens/IMG_1067.png" alt="Foto de Perfil" class="perfil" />
+      <p>Meu nome é Luiz, tenho 20 anos, moro em Vila Velha e estou cursando Sistemas de Informações na UVV.</p>
+    </section>
+
+    <section class="info-box" data-animate>
+      <h3>Habilidades Pessoais</h3>
+      <p>Treino powerlifting, jogo valorant e roblox.</p>
+
+      <h3>Hobbies</h3>
+      <p>Jogar e treinar.</p>
+
+      <h3>Vida Acadêmica</h3>
+      <p>Primeiro Período na Universidade</p>
+    </section>
+
+    <section class="media-section" data-animate>
+      <h3>Minha Música Preferida</h3>
+      <audio controls>
+        <source src="audio/Apocalypse - Cigarettes After Sex.mp3" type="audio/mpeg" />
+      </audio>
+
+      <h3>Meu Vídeo Favorito</h3>
+      <video controls>
+        <source src="videos/central-cee.mp4" type="video/mp4" />
+      </video>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Luiz Felipe Soares. Todos os direitos reservados.</p>
+  </footer>
+
+  <button id="topBtn" onclick="scrollToTop()">↑</button>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    const topBtn = document.getElementById("topBtn");
+    window.onscroll = function () {
+      topBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    };
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light-mode");
+    }
+  </script>
+</body>
+</html>
